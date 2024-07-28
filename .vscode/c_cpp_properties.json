@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "ti84plce",
+            "includePath": [
+                "/Users/linus/CEdev/examples/hello_world/**",
+                "/Users/linus/CEdev/include/"
+            ],
+            "defines": [],
+            "macFrameworkPath": [
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "macos-clang-x64",
+            "compilerPath": "/Users/linus/CEdev/bin/ez80-clang"
+        }
+    ],
+    "version": 4
+}

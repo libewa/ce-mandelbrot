@@ -1,4 +1,5 @@
 #include <graphx.h>
+#include <keypadc.h>
 #include <stdlib.h>
 
 double currentX, currentY;
@@ -26,6 +27,9 @@ int countIterations(int x, int y) {
 }
 
 int main(void) {
+    /* Enable the On latch to allow the user to quit the long program. */
+    kb_EnableOnLatch();
+
     /* Initialize graphics drawing */
     gfx_Begin();
     gfx_SetDrawScreen();
@@ -34,13 +38,20 @@ int main(void) {
 
     for (int x = 0; x < GFX_LCD_WIDTH; x++)
     for (int y = 0; y < GFX_LCD_HEIGHT; y++) {
+        if (kb_On) {
+            kb_ClearOnLatch();
+            goto end;
+        }
         if (countIterations(x, y) == 100) {
             gfx_SetPixel(x, y);
         }
     }
 
+    end:
     /* End graphics drawing */
     gfx_End();
+    /* Disable the On latch */
+    kb_DisableOnLatch();
 
     return 0;
 }

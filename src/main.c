@@ -11,6 +11,9 @@ const double cymax = 1.5;
 const int maxIterations = 100;
 const double limit = 100.0;
 
+// Maps 8 colors in a gradient to palette colors
+const uint8_t colors[8] = {31, 63, 95, 127, 159, 191, 223, 255};
+
 int countIterations(int x, int y) {
     double cx = cxmin + (cxmax - cxmin) / GFX_LCD_WIDTH * x;
     double cy = cymin + (cymax - cymin) / GFX_LCD_HEIGHT * y;
@@ -42,9 +45,9 @@ int main(void) {
         if (kb_On) {
             goto end;
         }
-        if (countIterations(x, y) == 100) {
-            gfx_SetPixel(x, y);
-        }
+        
+        gfx_SetColor(colors[countIterations(x, y) % 8 - 1]);
+        gfx_SetPixel(x, y);
     }
 
     while (!kb_On);

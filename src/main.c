@@ -37,8 +37,6 @@ int main(void) {
     gfx_FillScreen(255);
     gfx_SetColor(0);
 
-    os_RunIndicOn();
-
     for (int x = 0; x < GFX_LCD_WIDTH; x++)
     for (int y = 0; y < GFX_LCD_HEIGHT; y++) {
         if (kb_On) {
@@ -48,8 +46,6 @@ int main(void) {
             gfx_SetPixel(x, y);
         }
     }
-
-    os_RunIndicOff();
 
     while (!kb_On);
 

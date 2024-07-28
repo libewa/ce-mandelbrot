@@ -45,8 +45,13 @@ int main(void) {
         if (kb_On) {
             goto end;
         }
+
+        int iter = countIterations(x, y);
         
-        gfx_SetColor(colors[countIterations(x, y) % 8 - 1]);
+        gfx_SetColor(colors[iter % 8]);
+        if (iter == maxIterations) {
+            gfx_SetColor(0);
+        }
         gfx_SetPixel(x, y);
     }
 

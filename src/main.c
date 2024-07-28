@@ -1,5 +1,6 @@
 #include <graphx.h>
 #include <keypadc.h>
+#include <ti/ui.h>
 #include <stdlib.h>
 
 double currentX, currentY;
@@ -36,10 +37,11 @@ int main(void) {
     gfx_FillScreen(255);
     gfx_SetColor(0);
 
+    os_RunIndicOn();
+
     for (int x = 0; x < GFX_LCD_WIDTH; x++)
     for (int y = 0; y < GFX_LCD_HEIGHT; y++) {
         if (kb_On) {
-            kb_ClearOnLatch();
             goto end;
         }
         if (countIterations(x, y) == 100) {
@@ -47,10 +49,16 @@ int main(void) {
         }
     }
 
+    os_RunIndicOff();
+
+    while (!kb_On);
+
     end:
     /* End graphics drawing */
     gfx_End();
+
     /* Disable the On latch */
+    kb_ClearOnLatch();
     kb_DisableOnLatch();
 
     return 0;
